@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>학생 입시 상담 가이드</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f0f2f5;
+    color: #2d3436;
+    line-height: 1.75;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, #1a237e 0%, #0d47a1 40%, #00838f 100%);
+    color: white;
+    padding: 48px 20px 40px;
+    text-align: center;
+    position: relative;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40px;
+    background: linear-gradient(to bottom right, transparent 49.5%, #f0f2f5 50%);
+  }
+  .hero h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: 8px; }
+  .hero p { font-size: 0.92rem; opacity: 0.85; }
+  .hero-badges { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.78rem;
+  }
+
+  /* ── Tab Nav ── */
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px 20px;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background: white;
+    font-size: 0.83rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #555;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { border-color: #1565c0; color: #1565c0; }
+  .tab-btn.active { background: #1565c0; color: white; border-color: #1565c0; }
+
+  /* ── Layout ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 20px; }
+  .section { display: none; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Card ── */
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .card h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #1a237e;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 22px 0 10px;
+    color: #0d47a1;
+  }
+  .card h4 {
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin: 16px 0 8px;
+    color: #333;
+  }
+
+  /* ── Profile Card ── */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .profile-item {
+    background: #f8f9ff;
+    border-radius: 12px;
+    padding: 16px;
+    border-left: 4px solid #1565c0;
+  }
+  .profile-item.strength { border-color: #2e7d32; background: #f1f8f2; }
+  .profile-item.weakness { border-color: #e65100; background: #fff8f1; }
+  .profile-item .label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .profile-item .value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+  }
+  .profile-item .sub {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 2px;
+  }
+
+  /* ── Strategy Box ── */
+  .strategy-box {
+    background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .strategy-box .big {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a237e;
+    margin-bottom: 6px;
+  }
+  .strategy-box .desc {
+    font-size: 0.88rem;
+    color: #555;
+  }
+
+  /* ── Table ── */
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.87rem;
+  }
+  .info-table th {
+    background: #f5f7ff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #dde;
+    white-space: nowrap;
+  }
+  .info-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: top;
+  }
+  .info-table tr:hover td { background: #f8f9ff; }
+
+  /* ── Tags ── */
+  .tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin: 1px 2px;
+  }
+  .tag.blue { background: #e3f2fd; color: #1565c0; }
+  .tag.green { background: #e8f5e9; color: #2e7d32; }
+  .tag.orange { background: #fff3e0; color: #e65100; }
+  .tag.purple { background: #f3e5f5; color: #6a1b9a; }
+  .tag.red { background: #fce4ec; color: #c62828; }
+  .tag.teal { background: #e0f2f1; color: #00695c; }
+  .tag.gray { background: #f5f5f5; color: #666; }
+  .tag.pink { background: #fce4ec; color: #ad1457; }
+
+  /* ── Field Cards ── */
+  .field-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .field-card {
+    border: 1px solid #eee;
+    border-radius: 14px;
+    padding: 20px;
+    transition: all 0.2s;
+    position: relative;
+    background: white;
+  }
+  .field-card:hover {
+    border-color: #1565c0;
+    box-shadow: 0 4px 16px rgba(21,101,192,0.1);
+    transform: translateY(-2px);
+  }
+  .field-card .icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+  .field-card .name {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  .field-card .dept {
+    font-size: 0.82rem;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  .field-card .detail {
+    font-size: 0.82rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  .field-card .univ-list {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: #666;
+    background: #f8f9ff;
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+
+  /* ── Callout ── */
+  .callout {
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 0.88rem;
+  }
+  .callout.warn { background: #fff8e1; border-left: 4px solid #ffb300; }
+  .callout.warn strong { color: #f57f17; }
+  .callout.info { background: #e3f2fd; border-left: 4px solid #42a5f5; }
+  .callout.info strong { color: #1565c0; }
+  .callout.success { background: #e8f5e9; border-left: 4px solid #66bb6a; }
+  .callout.success strong { color: #2e7d32; }
+  .callout.tip { background: #f3e5f5; border-left: 4px solid #ab47bc; }
+  .callout.tip strong { color: #6a1b9a; }
+
+  /* ── Steps ── */
+  .step-list { margin: 16px 0; }
+  .step-item {
+    display: flex;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: flex-start;
+  }
+  .step-item:last-child { border-bottom: none; }
+  .step-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1565c0, #0d47a1);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .step-content strong { display: block; font-size: 0.95rem; margin-bottom: 4px; }
+  .step-content p { font-size: 0.85rem; color: #666; }
+
+  /* ── Script Card ── */
+  .script-card {
+    background: linear-gradient(135deg, #f5f7ff, #fff);
+    border: 1px solid #c5cae9;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 14px;
+  }
+  .script-card .label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1565c0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .script-card .text {
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.85;
+  }
+  .script-card .text em {
+    color: #999;
+    font-style: normal;
+    font-size: 0.82rem;
+  }
+  .script-card .text .highlight {
+    background: #fff9c4;
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+
+  /* ── Checklist ── */
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 6px 0;
+    font-size: 0.88rem;
+    color: #444;
+  }
+  .check-icon {
+    color: #1565c0;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  /* ── Timeline ── */
+  .timeline { margin: 16px 0; }
+  .tl-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-period {
+    width: 90px;
+    flex-shrink: 0;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #1565c0;
+    padding-top: 2px;
+  }
+  .tl-content {
+    font-size: 0.88rem;
+    color: #444;
+  }
+  .tl-content strong { color: #333; }
+
+  /* ── Compare Box ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .compare-box {
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .compare-box.do {
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+  }
+  .compare-box.dont {
+    background: #fce4ec;
+    border: 1px solid #ef9a9a;
+  }
+  .compare-box .box-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+  .compare-box.do .box-title { color: #2e7d32; }
+  .compare-box.dont .box-title { color: #c62828; }
+  .compare-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  .compare-box li {
+    font-size: 0.85rem;
+    padding: 4px 0;
+    color: #555;
+  }
+  .compare-box li::before {
+    margin-right: 6px;
+    font-weight: bold;
+  }
+  .compare-box.do li::before { content: "O "; color: #2e7d32; }
+  .compare-box.dont li::before { content: "X "; color: #c62828; }
+
+  /* ── Mindmap style ── */
+  .interest-hub {
+    text-align: center;
+    padding: 30px 20px;
+    margin: 16px 0;
+  }
+  .hub-center {
+    display: inline-block;
+    background: linear-gradient(135deg, #1565c0, #0d47a1);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+  .hub-branches {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .hub-branch {
+    background: #f5f7ff;
+    border: 2px solid #c5cae9;
+    border-radius: 14px;
+    padding: 12px 18px;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .hub-branch:hover {
+    border-color: #1565c0;
+    background: #e3f2fd;
+    transform: scale(1.05);
+  }
+  .hub-branch strong { display: block; color: #1a237e; }
+  .hub-branch span { font-size: 0.78rem; color: #888; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.8rem;
+    color: #999;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.4rem; }
+    .profile-grid { grid-template-columns: 1fr; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .field-grid { grid-template-columns: 1fr; }
+    .card { padding: 20px; }
+    .tab-nav { gap: 4px; padding: 12px 10px; }
+    .tab-btn { padding: 6px 12px; font-size: 0.78rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <h1>학생 입시 상담 가이드</h1>
+  <p>"하고 싶은 게 너무 많은 학생" — 이걸 강점으로 바꾸는 전략</p>
+  <div class="hero-badges">
+    <span class="hero-badge">고2 | 내신 2.35 (5등급제)</span>
+    <span class="hero-badge">리더십 + 적극적 학교생활</span>
+    <span class="hero-badge">모의고사 낮음 → 학종 집중</span>
+  </div>
+</div>
+
+<!-- ── Tab Nav ── -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('profile')">학생 분석</button>
+  <button class="tab-btn" onclick="showTab('strategy')">핵심 전략</button>
+  <button class="tab-btn" onclick="showTab('energy')">신재생에너지</button>
+  <button class="tab-btn" onclick="showTab('fields')">다른 분야 탐색</button>
+  <button class="tab-btn" onclick="showTab('multi')">관심 많은 학생 가이드</button>
+  <button class="tab-btn" onclick="showTab('timeline')">시기별 준비</button>
+  <button class="tab-btn" onclick="showTab('subjects')">선택과목 전략</button>
+  <button class="tab-btn" onclick="showTab('school')">우리 학교 & 학종</button>
+  <button class="tab-btn" onclick="showTab('talk')">상담 멘트</button>
+</div>
+
+<div class="container">
+
+  <!-- ═══════════ TAB 1: 학생 분석 ═══════════ -->
+  <div id="profile" class="section active">
+    <div class="card">
+      <h2>학생 프로필 분석</h2>
+
+      <div class="profile-grid">
+        <div class="profile-item">
+          <div class="label">내신 성적</div>
+          <div class="value">2.35 (5등급제)</div>
+          <div class="sub">B~B+ 수준, 학종 지원 가능 범위</div>
+        </div>
+        <div class="profile-item">
+          <div class="label">모의고사</div>
+          <div class="value">낮은 편</div>
+          <div class="sub">정시보다 수시(학종)에 집중해야 함</div>
+        </div>
+        <div class="profile-item strength">
+          <div class="label">강점 1</div>
+          <div class="value">리더십 & 적극적 학교생활</div>
+          <div class="sub">학종에서 가장 높이 평가하는 역량</div>
+        </div>
+        <div class="profile-item strength">
+          <div class="label">강점 2</div>
+          <div class="value">다양한 관심 분야</div>
+          <div class="sub">융합형 인재상에 부합 — 단, 스토리 정리 필요</div>
+        </div>
+        <div class="profile-item weakness">
+          <div class="label">보완 필요</div>
+          <div class="value">모의고사 성적</div>
+          <div class="sub">수능 최저가 있는 대학은 주의 필요</div>
+        </div>
+        <div class="profile-item weakness">
+          <div class="label">보완 필요</div>
+          <div class="value">진로 방향 구체화</div>
+          <div class="sub">관심이 많은 만큼 하나의 스토리로 엮는 작업 필요</div>
+        </div>
+      </div>
+
+      <div class="strategy-box">
+        <div class="big">최적 전형: 학생부종합전형 (학종)</div>
+        <div class="desc">내신 괜찮고 + 리더십 있고 + 학교생활 열심히 = 학종에 딱 맞는 프로필!</div>
+      </div>
+
+      <div class="callout info">
+        <strong>왜 학종인가?</strong><br>
+        - 모의고사 낮음 → 정시(수능) 경쟁력 약함<br>
+        - 학종은 수능 성적이 아니라 <strong>학교에서의 성장 과정과 활동</strong>을 봄<br>
+        - 리더십, 다양한 관심사, 적극적 참여 = 학종 평가관이 좋아하는 요소<br>
+        - 단, 수능 최저학력기준이 있는 대학은 모의고사 성적 개선 필요
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>내신 2.35 기준 지원 가능 대학군</h2>
+      <p style="font-size:0.85rem; color:#888; margin-bottom:14px;">5등급제 2.35 ≈ B~B+ 수준. 학종은 성적+활동 종합평가이므로 활동이 좋으면 상향 지원도 가능!</p>
+
+      <table class="info-table">
+        <thead>
+          <tr><th>구분</th><th>대학 예시</th><th>특징</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag red">도전</span></td>
+            <td>건국대, 단국대, 인하대, 아주대, 숭실대</td>
+            <td>활동 우수 시 가능, 수능최저 확인</td>
+          </tr>
+          <tr>
+            <td><span class="tag orange">소신</span></td>
+            <td>서울과기대, 가천대, 한국공대, 명지대, 상명대</td>
+            <td>학종 비중 높은 대학 노리기</td>
+          </tr>
+          <tr>
+            <td><span class="tag green">적정</span></td>
+            <td>지방 거점 국립대 (충남대, 전북대, 부산대 등)</td>
+            <td>내신 부담 적고 등록금 저렴</td>
+          </tr>
+          <tr>
+            <td><span class="tag blue">안정</span></td>
+            <td>지방 국립대, 한국에너지공대(KENTECH)</td>
+            <td>특성화 대학은 장학금 혜택도!</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        <strong>내신을 조금만 더 올리면!</strong> 2.35 → 2.0 이하로 올리면 지원 가능 대학 폭이 확 넓어져요. 고2 2학기~고3 1학기가 마지막 기회!
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ TAB 2: 핵심 전략 ═══════════ -->
+  <div id="strategy" class="section">
+    <div class="card">
+      <h2>학종 합격을 위한 핵심 전략</h2>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <strong>진로 방향 "하나의 스토리"로 엮기</strong>
+            <p>관심사가 많은 건 좋지만, 학종에서는 3년간의 활동이 하나의 흐름으로 연결되어야 해요. "여러 관심사를 탐색한 끝에 이 분야를 선택했다"는 성장 스토리가 가장 강력합니다. 꼭 하나만 해야 하는 건 아니지만, <strong>중심축</strong>은 있어야 해요.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <strong>세특(세부능력특기사항) = 학종의 핵심</strong>
+            <p>모든 교과 수업에서 자신의 관심 분야와 연결한 탐구 활동을 기록하세요. 국어, 영어, 수학, 과학, 사회... 어떤 과목이든 연결 가능합니다. 이게 바로 "융합적 사고력"이에요.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <strong>리더십을 "실행력"으로 보여주기</strong>
+            <p>리더십이 있다면, 단순히 회장/부회장 직책이 아니라 <strong>"무언가를 기획하고 실행한 경험"</strong>이 중요해요. 동아리 프로젝트, 캠페인, 발표 등 구체적 결과물이 있으면 최고!</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <strong>내신 관리 — 남은 기간 집중</strong>
+            <p>2.35에서 조금만 올려도 지원 폭이 넓어져요. 특히 지원할 학과와 관련된 핵심 교과(이공계면 수학·과학, 인문계면 국어·사회)는 반드시 신경 쓰세요.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <strong>수능 최저 대비 — 최소한의 보험</strong>
+            <p>모의고사가 낮더라도 수능 최저가 있는 대학을 위해 기본적인 수능 공부는 병행하세요. 최저 충족만 하면 되니까 "올킬"이 아니라 "최소 통과"가 목표!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>"하고 싶은 게 많다"를 강점으로 바꾸는 법</h2>
+
+      <div class="compare-grid">
+        <div class="compare-box do">
+          <div class="box-title">이렇게 하면 강점!</div>
+          <ul>
+            <li>여러 관심사를 탐색하되 <strong>중심 주제</strong>를 정하기</li>
+            <li>"탐색 → 심화 → 선택"의 <strong>성장 과정</strong> 보여주기</li>
+            <li>다양한 관심사를 <strong>융합</strong>하는 시도 (예: 에너지 + 정책 + 기술)</li>
+            <li>각 관심사에서 <strong>구체적 활동·결과물</strong> 남기기</li>
+            <li>면접에서 "왜 이 분야를 최종 선택했는지" 설명 가능하게</li>
+          </ul>
+        </div>
+        <div class="compare-box dont">
+          <div class="box-title">이렇게 하면 약점...</div>
+          <ul>
+            <li>이것저것 손대기만 하고 깊이가 없는 경우</li>
+            <li>활동이 <strong>나열식</strong>으로만 보이는 경우</li>
+            <li>고1, 고2, 고3 관심 분야가 완전히 다른 경우</li>
+            <li>왜 그 분야에 관심을 갖게 됐는지 설명 못하는 경우</li>
+            <li>단순 호기심에서 끝나고 행동이 없는 경우</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <strong>핵심 포인트!</strong> 학종 평가관은 "이 학생이 뭘 좋아하는지"보다 <strong>"어떤 과정을 거쳐 성장했는지"</strong>를 봐요. 관심사가 많다는 건 탐색의 폭이 넓다는 뜻이고, 그 탐색이 하나의 방향으로 수렴되는 과정을 보여주면 오히려 강점이 됩니다!
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ TAB 3: 신재생에너지 ═══════════ -->
+  <div id="energy" class="section">
+    <div class="card">
+      <h2>신재생에너지 분야 진학 가이드</h2>
+
+      <h3>관련 학과 & 대학</h3>
+      <table class="info-table">
+        <thead>
+          <tr><th>분류</th><th>학과</th><th>추천 대학</th><th>특징</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag green">직접 관련</span></td>
+            <td>에너지공학과<br>신재생에너지학과</td>
+            <td>한양대(에리카), 인하대, 전북대, 충남대</td>
+            <td>가장 직접적 연결</td>
+          </tr>
+          <tr>
+            <td><span class="tag green">직접 관련</span></td>
+            <td>에너지자원공학과<br>환경에너지공학과</td>
+            <td>서울대, 인하대, 전남대, 부산대</td>
+            <td>자원+에너지 융합</td>
+          </tr>
+          <tr>
+            <td><span class="tag blue">공학 기반</span></td>
+            <td>전기공학과</td>
+            <td>건국대, 인하대, 아주대, 충남대</td>
+            <td>태양광·풍력 시스템</td>
+          </tr>
+          <tr>
+            <td><span class="tag blue">공학 기반</span></td>
+            <td>기계공학과</td>
+            <td>건국대, 단국대, 부산대, 경북대</td>
+            <td>에너지 변환 장치</td>
+          </tr>
+          <tr>
+            <td><span class="tag blue">공학 기반</span></td>
+            <td>화학공학과</td>
+            <td>인하대, 아주대, 충남대, 전북대</td>
+            <td>배터리·수소에너지</td>
+          </tr>
+          <tr>
+            <td><span class="tag purple">융합</span></td>
+            <td>환경공학과</td>
+            <td>건국대, 서울과기대, 부산대</td>
+            <td>환경+에너지 정책</td>
+          </tr>
+          <tr>
+            <td><span class="tag orange">정책</span></td>
+            <td>에너지정책학과<br>환경정책학과</td>
+            <td>서울대(환경대학원), 고려대</td>
+            <td>이과 아니어도 가능</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout success">
+        <strong>특별 추천: 한국에너지공대 (KENTECH)</strong><br>
+        - 2022년 개교한 에너지 특성화 대학 (광주 나주)<br>
+        - <strong>등록금 전액 장학금</strong> + 기숙사 제공<br>
+        - 에너지공학부 단일학부, 소수 정예 교육<br>
+        - 학종 전형 운영, 에너지에 진심인 학생에게 최적<br>
+        - 학부모님께 경제적 측면에서도 매력적인 선택지!
+      </div>
+
+      <h3>세특 연계 아이디어</h3>
+      <table class="info-table">
+        <thead>
+          <tr><th>교과</th><th>탐구 주제 예시</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>물리</strong></td><td>태양전지의 광전효과 원리, 풍력 터빈의 에너지 변환 효율</td></tr>
+          <tr><td><strong>화학</strong></td><td>수소연료전지의 화학 반응, 리튬이온 배터리 원리</td></tr>
+          <tr><td><strong>지구과학</strong></td><td>기후변화와 에너지 전환, 해양에너지(조력·파력) 가능성</td></tr>
+          <tr><td><strong>수학</strong></td><td>태양광 발전량 데이터 통계 분석, 에너지 효율 최적화 수학적 모델</td></tr>
+          <tr><td><strong>사회/경제</strong></td><td>한국 에너지 정책(RE100, 탄소중립), 그린뉴딜 경제 효과</td></tr>
+          <tr><td><strong>국어</strong></td><td>에너지 전환 관련 논설문 작성, 환경 다큐 비평문</td></tr>
+          <tr><td><strong>영어</strong></td><td>해외 신재생에너지 정책 원문 분석, TED 강연 리뷰</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════ TAB 4: 다른 분야 탐색 ═══════════ -->
+  <div id="fields" class="section">
+    <div class="card">
+      <h2>관심 분야별 진학 로드맵</h2>
+      <p style="font-size:0.85rem; color:#888; margin-bottom:8px;">학생이 다른 분야에도 관심이 있다면, 각 분야별로 어떻게 준비해야 하는지 한눈에 정리했어요.</p>
+      <p style="font-size:0.85rem; color:#888; margin-bottom:16px;">학생의 강점(리더십, 내신 2.35, 적극적 학교생활)을 기준으로 추천합니다.</p>
+
+      <div class="field-grid">
+
+        <div class="field-card">
+          <div class="icon">⚡</div>
+          <div class="name">신재생에너지 / 에너지공학</div>
+          <div class="dept">에너지공학과, 전기공학과, 환경공학과</div>
+          <div class="detail">
+            <strong>핵심 교과:</strong> 물리, 화학, 수학<br>
+            <strong>세특 키워드:</strong> 태양광, 풍력, 수소, 탄소중립, 에너지전환<br>
+            <strong>활동:</strong> 과학 동아리, 에너지 관련 탐구, 환경 캠페인
+          </div>
+          <div class="univ-list">KENTECH, 인하대, 서울과기대, 전북대, 충남대</div>
+        </div>
+
+        <div class="field-card">
+          <div class="icon">💻</div>
+          <div class="name">IT / 컴퓨터공학</div>
+          <div class="dept">컴퓨터공학과, 소프트웨어학과, AI학과</div>
+          <div class="detail">
+            <strong>핵심 교과:</strong> 수학, 정보, 과학<br>
+            <strong>세특 키워드:</strong> 알고리즘, 코딩, 인공지능, 데이터<br>
+            <strong>활동:</strong> 코딩 동아리, 앱/웹 개발 프로젝트, 해커톤
+          </div>
+          <div class="univ-list">건국대, 단국대, 가천대, 서울과기대, 국립대</div>
+        </div>
+
+        <div class="field-card">
+          <div class="icon">🏥</div>
+          <div class="name">보건 / 의료</div>
+          <div class="dept">간호학과, 물리치료학과, 보건학과, 의생명과학과</div>
+          <div class="detail">
+            <strong>핵심 교과:</strong> 생명과학, 화학<br>
+            <strong>세특 키워드:</strong> 건강, 의료기술, 공중보건, 생명윤리<br>
+            <strong>활동:</strong> 보건 봉사, 생명과학 탐구, 의료 관련 독서
+          </div>
+          <div class="univ-list">가천대, 을지대, 삼육대, 지방 국립대 간호학과</div>
+        </div>
+
+        <div class="field-card">
+          <div class="icon">🏗️</div>
+          <div class="name">건축 / 도시</div>
+          <div class="dept">건축학과, 도시공학과, 조경학과</div>
+          <div class="detail">
+            <strong>핵심 교과:</strong> 수학, 물리, 미술<br>
+            <strong>세특 키워드:</strong> 지속가능건축, 스마트시티, 친환경설계<br>
+            <strong>활동:</strong> 건축 탐방, 모형 제작, 도시문제 탐구
+          </div>
+          <div class="univ-list">서울과기대, 명지대, 한밭대, 지방 국립대</div>
+        </div>
+
+        <div class="field-card">
+          <div class="icon">📊</div>
+          <div class="name">경영 / 경제</div>
+          <div class="dept">경영학과, 경제학과, 국제통상학과</div>
+          <div class="detail">
+            <strong>핵심 교과:</strong> 수학, 사회, 경제<br>
+            <strong>세특 키워드:</strong> 기업분석, 마케팅, 창업, 경제정책<br>
+            <strong>활동:</strong> 경제 동아리, 모의 창업, 시사 토론, 리더십 활동
+          </div>
+          <div class="univ-list">숭실대, 단국대, 가천대, 지방 국립대</div>
+        </div>
+
+        <div class="field-card">
+          <div class="icon">🌍</div>
+          <div class="name">환경 / 지구과학</div>
+          <div class="dept">환경학과, 지구환경과학과, 대기과학과</div>
+          <div class="detail">
+            <strong>핵심 교과:</strong> 지구과학, 생명과학, 화학<br>
+            <strong>세특 키워드:</strong> 기후변화, 생태계, 탄소중립, 자원순환<br>
+            <strong>활동:</strong> 환경 동아리, 생태 조사, 환경 캠페인 기획
+          </div>
+          <div class="univ-list">건국대, 서울과기대, 부산대, 강원대</div>
+        </div>
+
+        <div class="field-card">
+          <div class="icon">📰</div>
+          <div class="name">미디어 / 콘텐츠</div>
+          <div class="dept">미디어커뮤니케이션학과, 영상학과, 광고홍보학과</div>
+          <div class="detail">
+            <strong>핵심 교과:</strong> 국어, 사회, 영어<br>
+            <strong>세특 키워드:</strong> 미디어리터러시, 콘텐츠기획, 영상제작<br>
+            <strong>활동:</strong> 교내 방송부, 영상 제작, 기사 작성, SNS 프로젝트
+          </div>
+          <div class="univ-list">단국대, 상명대, 명지대, 지방 국립대</div>
+        </div>
+
+        <div class="field-card">
+          <div class="icon">⚖️</div>
+          <div class="name">사회과학 / 행정</div>
+          <div class="dept">행정학과, 정치외교학과, 사회학과</div>
+          <div class="detail">
+            <strong>핵심 교과:</strong> 사회, 국어, 영어<br>
+            <strong>세특 키워드:</strong> 정책분석, 사회문제, 지방자치, 시민참여<br>
+            <strong>활동:</strong> 학생회, 토론 동아리, 정책 제안, 봉사활동
+          </div>
+          <div class="univ-list">숭실대, 단국대, 가천대, 지방 국립대</div>
+        </div>
+
+        <div class="field-card">
+          <div class="icon">🔬</div>
+          <div class="name">자연과학</div>
+          <div class="dept">물리학과, 화학과, 생명과학과, 수학과</div>
+          <div class="detail">
+            <strong>핵심 교과:</strong> 해당 과학 과목 + 수학<br>
+            <strong>세특 키워드:</strong> 실험, 연구, 탐구, 과학적 사고<br>
+            <strong>활동:</strong> 과학 동아리, 실험 보고서, 과학전람회
+          </div>
+          <div class="univ-list">지방 국립대(등록금↓), 서울과기대</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>분야별 학종 준비 공통 프레임워크</h2>
+      <p style="font-size:0.85rem; color:#888; margin-bottom:16px;">어떤 분야를 선택하든 이 프레임워크는 동일해요!</p>
+
+      <table class="info-table">
+        <thead>
+          <tr><th>요소</th><th>내용</th><th>비중</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>세특</strong></td>
+            <td>모든 교과에서 관심 분야와 연계한 탐구. 깊이가 핵심!</td>
+            <td><span class="tag red">매우 높음</span></td>
+          </tr>
+          <tr>
+            <td><strong>내신</strong></td>
+            <td>전체 내신 + 관련 교과 성적. 상승세가 있으면 더 좋음</td>
+            <td><span class="tag orange">높음</span></td>
+          </tr>
+          <tr>
+            <td><strong>비교과</strong></td>
+            <td>동아리, 봉사, 자율활동 등. 양보다 질과 일관성</td>
+            <td><span class="tag blue">중간</span></td>
+          </tr>
+          <tr>
+            <td><strong>리더십/협업</strong></td>
+            <td>학생회, 동아리 임원, 프로젝트 리더 경험</td>
+            <td><span class="tag blue">중간</span></td>
+          </tr>
+          <tr>
+            <td><strong>독서</strong></td>
+            <td>관련 분야 독서 기록. 세특에 자연스럽게 녹이기</td>
+            <td><span class="tag green">보조</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout tip">
+        <strong>어떤 분야든 이 질문에 답할 수 있으면 OK!</strong><br>
+        1. 왜 이 분야에 관심을 갖게 됐나요? (동기)<br>
+        2. 어떤 탐구/활동을 했나요? (실행)<br>
+        3. 그 과정에서 무엇을 배웠나요? (성장)<br>
+        4. 앞으로 어떤 공부를 하고 싶나요? (비전)
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ TAB 5: 관심 많은 학생 가이드 ═══════════ -->
+  <div id="multi" class="section">
+    <div class="card">
+      <h2>"하고 싶은 게 많은 학생"을 위한 진로 정리법</h2>
+
+      <div class="interest-hub">
+        <div class="hub-center">학생의 다양한 관심사</div>
+        <div class="hub-branches">
+          <div class="hub-branch"><strong>에너지</strong><span>신재생, 태양광</span></div>
+          <div class="hub-branch"><strong>관심분야 B</strong><span>?</span></div>
+          <div class="hub-branch"><strong>관심분야 C</strong><span>?</span></div>
+          <div class="hub-branch"><strong>관심분야 D</strong><span>?</span></div>
+          <div class="hub-branch"><strong>리더십</strong><span>학생회, 기획</span></div>
+        </div>
+      </div>
+
+      <h3>STEP 1. 관심사 목록 작성</h3>
+      <p style="font-size:0.88rem; color:#555; margin-bottom:8px;">학생에게 물어볼 질문:</p>
+      <div class="check-item"><span class="check-icon">?</span><span>지금 가장 재미있는 수업은 뭐야?</span></div>
+      <div class="check-item"><span class="check-icon">?</span><span>유튜브/뉴스에서 자주 찾아보는 주제는?</span></div>
+      <div class="check-item"><span class="check-icon">?</span><span>동아리나 활동 중 가장 몰입했던 경험은?</span></div>
+      <div class="check-item"><span class="check-icon">?</span><span>어른이 되면 어떤 문제를 해결하고 싶어?</span></div>
+      <div class="check-item"><span class="check-icon">?</span><span>그 분야를 좋아하는 이유가 뭐야?</span></div>
+
+      <h3>STEP 2. 관심사 사이 연결고리 찾기</h3>
+      <p style="font-size:0.88rem; color:#555; margin-bottom:12px;">관심사가 겉보기에 달라 보여도, 그 아래에는 공통된 가치가 있는 경우가 많아요.</p>
+
+      <table class="info-table">
+        <thead>
+          <tr><th>관심사 조합 예시</th><th>공통 키워드</th><th>가능한 진로 방향</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>에너지 + 환경 + 정책</td>
+            <td>"지속가능한 미래"</td>
+            <td>환경에너지공학, 에너지정책, 도시계획</td>
+          </tr>
+          <tr>
+            <td>기술 + 리더십 + 사회문제</td>
+            <td>"기술로 세상을 바꾸기"</td>
+            <td>공학+경영, 사회혁신, 스타트업</td>
+          </tr>
+          <tr>
+            <td>과학 + 건강 + 사람</td>
+            <td>"사람을 돕는 과학"</td>
+            <td>의생명, 보건학, 의료기기공학</td>
+          </tr>
+          <tr>
+            <td>콘텐츠 + 사회 + 소통</td>
+            <td>"메시지를 전달하는 힘"</td>
+            <td>미디어, 광고홍보, 사회학</td>
+          </tr>
+          <tr>
+            <td>수학 + 데이터 + 문제해결</td>
+            <td>"논리로 풀어내기"</td>
+            <td>데이터사이언스, 통계, 산업공학</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>STEP 3. "탐색형 스토리" 만들기</h3>
+      <div class="callout success">
+        <strong>학종에서 먹히는 스토리 구조:</strong><br><br>
+        고1: 다양한 분야를 <strong>탐색</strong>한 시기 (호기심, 폭넓은 경험)<br>
+        ↓<br>
+        고2: 특정 분야로 <strong>심화</strong>되는 시기 (깊은 탐구, 구체적 활동)<br>
+        ↓<br>
+        고3: 진로를 <strong>확정</strong>하고 준비하는 시기 (지원 동기와 연결)<br><br>
+        이 학생은 지금 고2니까, <strong>심화 단계로 진입해야 할 타이밍</strong>이에요!
+      </div>
+
+      <h3>STEP 4. 아직 방향을 못 정했다면?</h3>
+      <p style="font-size:0.88rem; color:#555; margin-bottom:12px;">괜찮아요! 이런 방법도 있어요:</p>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">A</div>
+          <div class="step-content">
+            <strong>자유전공학부 / 융합학부 지원</strong>
+            <p>입학 후 전공을 선택하는 학부. 건국대 자유전공학부, 성균관대 글로벌리더학부 등. 내신과 활동이 좋으면 유리!</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">B</div>
+          <div class="step-content">
+            <strong>폭넓은 기초학문 선택</strong>
+            <p>경영학, 행정학, 사회학 등 진로 폭이 넓은 학과. 졸업 후 다양한 분야로 진출 가능.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">C</div>
+          <div class="step-content">
+            <strong>가장 "심장이 뛰는" 분야 하나를 일단 선택</strong>
+            <p>완벽한 확신이 아니어도 괜찮아요. 대학 입학 후 전과, 복수전공, 부전공으로 방향 수정 충분히 가능합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ TAB 6: 시기별 준비 ═══════════ -->
+  <div id="timeline" class="section">
+    <div class="card">
+      <h2>시기별 준비 로드맵</h2>
+      <p style="font-size:0.85rem; color:#888; margin-bottom:16px;">고2 현재부터 입시까지의 타임라인</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-period">고2<br>지금~여름</div>
+          <div class="tl-content">
+            <strong>진로 방향 구체화 + 내신 올리기</strong><br>
+            - 관심 분야 중 <strong>중심축 1개</strong> 정하기 (나머지는 보조 스토리로)<br>
+            - 2학기 내신 집중 관리 (특히 관련 교과)<br>
+            - 세특에 들어갈 탐구 주제 미리 정하고 수업에서 실행<br>
+            - 관련 동아리 활동 적극적으로
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-period">고2<br>2학기</div>
+          <div class="tl-content">
+            <strong>심화 활동 + 내신 마무리</strong><br>
+            - 세특 탐구 심화 (보고서, 실험, 프로젝트 등 결과물)<br>
+            - 내신 마지막 관리 (고2 2학기까지가 학종에 반영)<br>
+            - 리더십 활동 구체적 성과 만들기<br>
+            - 관련 분야 독서 기록 쌓기
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-period">고3<br>1학기</div>
+          <div class="tl-content">
+            <strong>지원 대학 선정 + 최종 내신</strong><br>
+            - 학종 지원할 대학 리스트 확정 (6개 지원 가능)<br>
+            - 대학별 인재상, 전형 방법 꼼꼼히 분석<br>
+            - 고3 1학기 내신도 반영! 마지막까지 집중<br>
+            - 수능 최저 있는 대학 대비 수능 공부 병행
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-period">고3<br>여름</div>
+          <div class="tl-content">
+            <strong>원서 전략 수립</strong><br>
+            - 수시 6장 카드 배분 전략 (상향/소신/적정/안정)<br>
+            - 대학별 자기소개서 준비 (폐지 추세이나 일부 대학 유지)<br>
+            - 면접 준비 시작 (예상 질문, 답변 연습)
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-period">고3<br>9~11월</div>
+          <div class="tl-content">
+            <strong>수시 원서 접수 + 면접</strong><br>
+            - 9월: 수시 원서 접수 (보통 9월 중순)<br>
+            - 10~11월: 대학별 면접 (학종은 면접 비중 큼!)<br>
+            - 11월: 수능 응시 (최저 충족 목표)
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-period">고3<br>12월~</div>
+          <div class="tl-content">
+            <strong>합격 발표 + 정시 대비</strong><br>
+            - 12월: 수시 합격 발표<br>
+            - 수시 불합격 시: 정시 지원 (수능+실적 기반)<br>
+            - 최종 합격!
+          </div>
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <strong>지금이 가장 중요한 시기!</strong><br>
+        고2 → 고3 넘어가는 이 시점에서 진로 방향을 잡고 세특·활동을 집중하면 학종에서 가장 강력한 스토리가 만들어져요. 늦지 않았어요!
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ TAB 7: 선택과목 전략 ═══════════ -->
+  <div id="subjects" class="section">
+    <div class="card">
+      <h2>고3 선택과목 전략</h2>
+      <p style="font-size:0.85rem; color:#888; margin-bottom:16px;">학종에서 선택과목은 "이 학생이 진로에 대해 진지하게 고민했는지"를 보여주는 신호예요. 지원 학과와 연결되는 과목을 고르는 게 핵심!</p>
+
+      <h3>신재생에너지 / 공학 계열을 간다면</h3>
+      <table class="info-table">
+        <thead>
+          <tr><th>중요도</th><th>추천 과목</th><th>이유</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag red">필수급</span></td>
+            <td><strong>물리학II (또는 물리학I 심화)</strong></td>
+            <td>에너지 원리의 기초. 공학계열 거의 필수</td>
+          </tr>
+          <tr>
+            <td><span class="tag red">필수급</span></td>
+            <td><strong>미적분 / 확률과 통계</strong></td>
+            <td>이공계 지원 시 대부분의 대학이 요구</td>
+          </tr>
+          <tr>
+            <td><span class="tag orange">강력 추천</span></td>
+            <td><strong>화학II (또는 화학I 심화)</strong></td>
+            <td>배터리, 수소에너지, 연료전지 등과 연결</td>
+          </tr>
+          <tr>
+            <td><span class="tag blue">추천</span></td>
+            <td><strong>지구과학</strong></td>
+            <td>기후변화, 에너지자원, 환경 이슈 연결</td>
+          </tr>
+          <tr>
+            <td><span class="tag blue">추천</span></td>
+            <td><strong>정보 (코딩)</strong></td>
+            <td>에너지 데이터 분석, AI 융합. 요즘 트렌드!</td>
+          </tr>
+          <tr>
+            <td><span class="tag green">보조</span></td>
+            <td><strong>생활과 윤리 / 사회문화</strong></td>
+            <td>에너지 정책, 환경윤리와 연결 가능</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>아직 방향을 못 정했다면?</h3>
+      <table class="info-table">
+        <thead>
+          <tr><th>상황</th><th>추천 조합</th><th>장점</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>이공계 쪽 같다면</strong></td>
+            <td>미적분 + 물리 or 화학</td>
+            <td>어떤 공학이든 대응 가능한 기본 세트</td>
+          </tr>
+          <tr>
+            <td><strong>인문/사회 쪽이라면</strong></td>
+            <td>사회문화 + 생활과윤리 + 경제</td>
+            <td>경영, 행정, 사회과학 폭넓게 지원 가능</td>
+          </tr>
+          <tr>
+            <td><strong>진짜 모르겠다면</strong></td>
+            <td>미적분 + 사회문화</td>
+            <td>문이과 모두 커버. 단, 이공계면 과학 1개 추가</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>분야별 핵심 선택과목 매칭</h3>
+      <table class="info-table">
+        <thead>
+          <tr><th>관심 분야</th><th>핵심 선택과목</th><th>추가 추천</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>에너지/환경공학</td>
+            <td><span class="tag red">물리</span> <span class="tag red">미적분</span> <span class="tag orange">화학</span></td>
+            <td>지구과학, 정보</td>
+          </tr>
+          <tr>
+            <td>IT/컴퓨터공학</td>
+            <td><span class="tag red">미적분</span> <span class="tag red">정보</span></td>
+            <td>물리, 확률과통계</td>
+          </tr>
+          <tr>
+            <td>기계/전기공학</td>
+            <td><span class="tag red">물리</span> <span class="tag red">미적분</span></td>
+            <td>화학, 정보</td>
+          </tr>
+          <tr>
+            <td>화학/바이오</td>
+            <td><span class="tag red">화학</span> <span class="tag red">생명과학</span></td>
+            <td>미적분, 확률과통계</td>
+          </tr>
+          <tr>
+            <td>경영/경제</td>
+            <td><span class="tag red">경제</span> <span class="tag red">확률과통계</span></td>
+            <td>사회문화, 미적분</td>
+          </tr>
+          <tr>
+            <td>행정/사회과학</td>
+            <td><span class="tag red">사회문화</span> <span class="tag red">생활과윤리</span></td>
+            <td>정치와법, 경제</td>
+          </tr>
+          <tr>
+            <td>보건/간호</td>
+            <td><span class="tag red">생명과학</span> <span class="tag red">화학</span></td>
+            <td>확률과통계, 생활과윤리</td>
+          </tr>
+          <tr>
+            <td>건축/도시</td>
+            <td><span class="tag red">물리</span> <span class="tag red">미적분</span></td>
+            <td>미술, 지구과학</td>
+          </tr>
+          <tr>
+            <td>미디어/콘텐츠</td>
+            <td><span class="tag red">사회문화</span> <span class="tag orange">정보</span></td>
+            <td>생활과윤리, 심리학</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout warn">
+        <strong>선택과목 주의사항!</strong><br>
+        - <strong>진로선택과목</strong>을 골라야 진로에 대한 관심을 보여줄 수 있어요<br>
+        - 진로선택과목은 성취평가제(A/B/C)라서 <strong>등급 부담이 적어요!</strong><br>
+        - 단, <strong>학교에서 개설하는 과목</strong> 중에서 골라야 하니 개설 과목 먼저 확인!<br>
+        - 선택과목 성적 + 세특까지 잘 채우면 금상첨화
+      </div>
+
+      <div class="callout tip">
+        <strong>상담 포인트!</strong> 학부모님께 "어떤 분야를 선택하든, 그 분야와 관련된 과목을 선택하는 게 중요합니다. 그리고 진로선택과목은 등급이 아니라 A/B/C로 나오니까 부담이 적어요"라고 말씀드리면 안심하실 거예요.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ TAB 8: 우리 학교 & 학종 ═══════════ -->
+  <div id="school" class="section">
+    <div class="card">
+      <h2>인문계고에서 학종, 솔직한 이야기</h2>
+      <p style="font-size:0.85rem; color:#888; margin-bottom:16px;">학업 성취도가 높지 않은 서울 인문계고에서 학종이 불리한 이유와, 그래도 메리트가 있는 이유를 정리했어요.</p>
+
+      <h3>불리한 이유 — 솔직하게</h3>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num" style="background: linear-gradient(135deg, #c62828, #e53935);">1</div>
+          <div class="step-content">
+            <strong>학교 프로필(교육과정 수준) 차이</strong>
+            <p>대학이 "학교 등급"을 공식적으로 본다고 하진 않지만, 학교의 교육과정 수준과 프로그램 다양성을 간접적으로 평가해요. 상위권 고교는 심화 수업, 다양한 진로선택과목, 풍부한 비교과 프로그램이 있는데, 그렇지 않은 학교는 기회 자체가 적어요.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background: linear-gradient(135deg, #c62828, #e53935);">2</div>
+          <div class="step-content">
+            <strong>세특의 깊이 차이</strong>
+            <p>선생님들의 세특 작성 역량과 경험이 학교마다 다를 수 있어요. 상위권 학교는 학종 노하우가 축적되어 있어서 세특이 체계적인 경우가 많아요. 학생이 아무리 좋은 탐구를 해도 세특에 잘 반영이 안 되면 아쉽죠.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background: linear-gradient(135deg, #c62828, #e53935);">3</div>
+          <div class="step-content">
+            <strong>교내 프로그램 한계</strong>
+            <p>학종은 "교내 활동"만 인정되는데, 학교에 관련 동아리나 대회, 연구 프로그램이 없으면 활동을 채울 기회 자체가 부족해요.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background: linear-gradient(135deg, #c62828, #e53935);">4</div>
+          <div class="step-content">
+            <strong>경쟁자 풀의 차이</strong>
+            <p>상위권 학교 학생들은 내신은 낮아도 세특·활동이 빵빵해서, 같은 내신이라도 학생부의 질적 경쟁력이 달라요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>그래도 학종을 써야 하는 이유</h2>
+
+      <div class="strategy-box">
+        <div class="big">정시보다 학종이 유일한 현실적 길</div>
+        <div class="desc">모의고사가 낮으면 정시는 사실상 어려워요. 학종이 불리하더라도, 정시보다는 가능성이 훨씬 높아요!</div>
+      </div>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num" style="background: linear-gradient(135deg, #2e7d32, #43a047);">1</div>
+          <div class="step-content">
+            <strong>"학교 안에서 최선을 다한 학생"은 평가받아요</strong>
+            <p>학종 평가관은 학교 환경을 고려해서 봐요. 프로그램이 부족한 학교에서 <strong>스스로 기회를 만들어낸 학생</strong>은 오히려 높은 평가를 받을 수 있어요. "이 환경에서 이만큼 했다"는 게 보이면 긍정적!</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background: linear-gradient(135deg, #2e7d32, #43a047);">2</div>
+          <div class="step-content">
+            <strong>리더십이 더 빛나는 환경</strong>
+            <p>상위권 학교는 잘하는 학생이 많아서 리더십 경쟁이 치열해요. 우리 학교에서는 리더십이 더 돋보일 수 있어요! 학생회, 동아리 회장 같은 경험이 상대적으로 잡기 쉽고, 그게 학종에서 큰 자산이 돼요.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background: linear-gradient(135deg, #2e7d32, #43a047);">3</div>
+          <div class="step-content">
+            <strong>내신 등급의 상대적 유리함</strong>
+            <p>학업 수준이 높지 않은 학교에서는 같은 실력으로도 더 높은 등급을 받을 수 있어요. 내신 2.35가 상위권 학교였으면 3~4등급이었을 수도 있거든요.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background: linear-gradient(135deg, #2e7d32, #43a047);">4</div>
+          <div class="step-content">
+            <strong>지방 국립대 & 특성화 대학에서 기회!</strong>
+            <p>서울 최상위 대학은 학교 프로필 영향이 있지만, <strong>지방 국립대나 KENTECH 같은 특성화 대학</strong>은 학교보다 학생 개인을 더 봐요. 이런 대학들이 오히려 가성비가 좋아요!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>우리 학교에서 학종 경쟁력 높이는 전략</h2>
+
+      <div class="compare-grid">
+        <div class="compare-box do">
+          <div class="box-title">이렇게 하면 경쟁력 UP!</div>
+          <ul>
+            <li>학교에 없는 동아리를 <strong>직접 만들기</strong> → "주도성" 어필</li>
+            <li>선생님께 미리 <strong>탐구 주제를 제안</strong>해서 세특에 반영시키기</li>
+            <li>리더십 활동에서 <strong>구체적 결과물</strong> 남기기 (캠페인, 프로젝트 등)</li>
+            <li>교내에 기회가 없으면 <strong>수업 안에서 깊이</strong>를 만들기</li>
+            <li>관련 분야 <strong>독서 → 보고서 → 세특</strong> 연결 루트 활용</li>
+          </ul>
+        </div>
+        <div class="compare-box dont">
+          <div class="box-title">이건 피하기</div>
+          <ul>
+            <li>학교 밖 스펙(외부 대회, 학원)에 의존 → 학종에 반영 안 됨</li>
+            <li>활동 수만 늘리고 깊이가 없는 경우</li>
+            <li>세특을 선생님에게만 맡기고 본인이 안 챙기는 경우</li>
+            <li>무리하게 서울 최상위권만 지원하는 경우</li>
+            <li>학종만 올인하고 수능을 완전히 포기하는 경우</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>현실적인 지원 전략</h3>
+      <table class="info-table">
+        <thead>
+          <tr><th>전략</th><th>설명</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>학종 + 현실적 대학군</strong></td>
+            <td>서울 상위 10개 대학보다는 <strong>중위권 수도권 + 지방 거점 국립대</strong>를 타겟으로. 학교 프로필 영향이 상대적으로 적어요.</td>
+          </tr>
+          <tr>
+            <td><strong>교과전형 병행 검토</strong></td>
+            <td>내신 2.35면 <strong>학생부교과전형</strong>으로 지방대/특성화대 지원도 가능해요. 학종과 함께 검토하세요.</td>
+          </tr>
+          <tr>
+            <td><strong>수능 최소 보험</strong></td>
+            <td>학종을 주력으로 하되, 수능 최저 통과 수준은 준비해두세요. 학종 6장 + 정시 보험이 가장 안전한 조합.</td>
+          </tr>
+          <tr>
+            <td><strong>특성화 대학 적극 활용</strong></td>
+            <td>KENTECH(에너지), 한국공대(산업기술) 등 특성화 대학은 학교보다 학생 개인의 관심과 열정을 더 봐요.</td>
+          </tr>
+          <tr>
+            <td><strong>세특을 직접 설계하기</strong></td>
+            <td>탐구 주제를 미리 정해서 수업 중 실행 → 결과물을 선생님께 제출 → 세특 반영. 이 루트를 적극 활용하세요!</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout success">
+        <strong>결론!</strong><br>
+        우리 학교에서 학종이 불리한 건 사실이에요. 하지만 이 학생은 <strong>리더십 + 적극적 학교생활 + 명확한 관심 분야</strong>가 있어요. 이 조합이면 학교의 불리함을 상당 부분 극복할 수 있어요. 정시가 어려운 상황에서 학종은 불리해도 <strong>가장 현실적이고 가능성 있는 길</strong>이에요!
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>학부모님께 이 주제 말씀드릴 때</h2>
+
+      <div class="script-card">
+        <div class="label">학교 불리함에 대해 물어보실 때</div>
+        <div class="text">
+          "솔직히 말씀드리면, 학종에서 학교 환경이 영향을 주는 부분은 있어요. 하지만 대학도 학교 상황을 고려해서 평가하고, <span class='highlight'>그 환경 안에서 얼마나 주도적으로 활동했는지</span>를 중요하게 봐요."<br><br>
+          "○○이는 리더십도 있고 학교생활을 적극적으로 하는 학생이라, 이 부분이 학종에서 큰 강점이 돼요. 학교 프로그램이 부족하더라도 <strong>스스로 기회를 만들어가는 모습</strong>을 보여주면 충분히 경쟁력이 있어요."<br><br>
+          "그리고 현실적으로 모의고사 성적을 고려하면 정시보다는 학종이 훨씬 가능성이 높아요. 지원 대학군을 현실적으로 잡고 전략적으로 준비하면 좋은 결과 기대할 수 있습니다."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ TAB 9: 상담 멘트 ═══════════ -->
+  <div id="talk" class="section">
+    <div class="card">
+      <h2>학부모 상담 활용 멘트</h2>
+      <p style="font-size:0.85rem; color:#888; margin-bottom:20px;">전화 상담 시 상황별로 참고하세요</p>
+
+      <div class="script-card">
+        <div class="label">도입 — 분위기 잡기</div>
+        <div class="text">
+          "안녕하세요, 어머니. 수업에서 보는 ○○이는 정말 에너지가 넘치고 학교생활에 적극적인 학생이에요. 그게 큰 장점이거든요."<br><br>
+          "상담 주제를 보니 '하고 싶은 게 많다'고 적어주셨는데, 사실 <span class='highlight'>관심이 많다는 건 나쁜 게 아니에요</span>. 다만 입시에서는 그걸 잘 정리하는 게 중요하죠."
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="label">전형 추천 — 학종 설명</div>
+        <div class="text">
+          "○○이 프로필을 보면, <span class='highlight'>학생부종합전형이 가장 유리</span>해요. 리더십도 있고, 학교생활을 열심히 하는 학생이 학종에서 높은 평가를 받거든요."<br><br>
+          "모의고사 성적이 좀 아쉬운 부분이 있지만, 학종은 수능 점수가 아니라 <strong>학교에서 어떻게 성장했는지</strong>를 보는 전형이에요. 그래서 오히려 ○○이한테 맞아요."<br><br>
+          "다만 일부 대학은 수능 최저학력기준이 있어서, 수능 공부도 최소한은 병행하시는 게 좋아요."
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="label">"하고 싶은 게 많다"에 대한 답변</div>
+        <div class="text">
+          "학종에서는 3년간의 활동이 하나의 스토리로 이어져야 해요. 그래서 <span class='highlight'>관심사 중에서 중심축 하나를 잡는 게 중요</span>합니다."<br><br>
+          "그렇다고 나머지를 버리라는 게 아니에요. 다양한 관심사를 탐색한 끝에 이 분야를 선택했다는 <strong>'성장 스토리'</strong>로 만들면 오히려 강점이 돼요."<br><br>
+          "예를 들어, 에너지에 관심이 있으면서 리더십도 있다면 — '에너지 문제를 해결하기 위해 사람들을 이끄는 리더'라는 방향으로 잡을 수 있죠."<br><br>
+          "지금 고2니까, 이번 학기 안에 중심 방향을 정하고 거기에 맞춰 세특과 활동을 집중하시면 충분히 좋은 결과를 기대할 수 있어요."
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="label">신재생에너지를 선택한다면</div>
+        <div class="text">
+          "신재생에너지 분야는 요즘 정말 유망해요. 국가적으로도 탄소중립, 에너지전환 정책을 추진하고 있어서 앞으로 수요가 계속 늘어날 거예요."<br><br>
+          "관련 학과로는 에너지공학과, 전기공학과, 환경공학과 등이 있고요. 특히 <span class='highlight'>한국에너지공대(KENTECH)</span>라는 에너지 특성화 대학도 있는데, 등록금 전액 장학금이에요. 한번 알아보시면 좋을 것 같아요."<br><br>
+          "○○이 내신이면 인하대, 서울과기대, 지방 거점 국립대 쪽도 충분히 도전해볼 수 있어요."
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="label">다른 분야를 선택한다면</div>
+        <div class="text">
+          "어떤 분야를 선택하든 학종 준비의 큰 틀은 같아요. <span class='highlight'>세특에서 깊이 있는 탐구를 보여주는 것</span>, 그리고 관련 활동에서 주도적으로 참여하는 것."<br><br>
+          "아직 확정이 안 됐다면, <strong>자유전공학부</strong>도 좋은 선택지예요. 입학 후에 전공을 정할 수 있으니까요."<br><br>
+          "그리고 대학 입학 후에도 전과, 복수전공, 부전공으로 방향을 바꿀 수 있어요. 그러니까 지금 완벽한 정답을 찾아야 한다는 부담은 내려놓으셔도 돼요."
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="label">내신 / 성적 관련</div>
+        <div class="text">
+          "현재 내신이 2.35 정도면 학종 지원은 충분히 가능한 수준이에요. 여기서 <span class='highlight'>조금만 더 올리시면</span> 지원할 수 있는 대학 폭이 넓어져요."<br><br>
+          "특히 지원하실 학과 관련 교과(이공계면 수학·과학) 성적을 잘 관리하시면 좋아요. 전체 등급보다 관련 교과 성적을 더 중요하게 보는 대학도 있거든요."
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="label">구체적 도움 요청 시</div>
+        <div class="text">
+          "입시 전형별 세부사항이나 대학별 전략은 <strong>진로진학부 선생님</strong>께서 더 전문적으로 안내해 주실 수 있어요. 제가 연결해 드릴까요?"<br><br>
+          "학교 진로상담 프로그램이나 대학 입학설명회도 활용하시면 좋아요."<br><br>
+          <em>(본인이 답하기 어려운 세부 질문이 나올 때 자연스럽게 전문가 연결)</em>
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="label">마무리</div>
+        <div class="text">
+          "○○이는 학교에서 정말 열심히 하는 학생이에요. 그 점이 학종에서 가장 큰 자산이 됩니다. 방향만 잘 잡으면 충분히 좋은 결과 있을 거예요."<br><br>
+          "추가로 궁금하신 점 있으시면 언제든 연락 주세요!"
+        </div>
+      </div>
+
+      <div class="callout warn">
+        <strong>상담 시 유의사항</strong><br>
+        - "하고 싶은 게 많다"를 부정적으로 말하지 말기 → <strong>"탐색의 폭이 넓다"</strong>로 긍정 전환<br>
+        - 특정 대학을 "여기 가세요"라고 단정짓지 말기 → <strong>"이런 대학들을 알아보시면 좋겠다"</strong>로<br>
+        - 모의고사 낮은 걸 너무 강조하지 말기 → <strong>학종이라는 대안이 있다</strong>는 데 초점<br>
+        - 확실하지 않은 입시 수치는 말하지 말기 → <strong>"확인 후 안내드릴게요"</strong>로
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  이 가이드는 참고용이며, 정확한 입시 정보는 각 대학 입학처 및 진로진학부를 통해 확인하세요.<br>
+  2025년 기준 정리 | 학생 개인정보 보호에 유의해 주세요.
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
