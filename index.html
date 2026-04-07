@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서양화/회화 전공 입시 가이드</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f0f2f5;
+    color: #2d3436;
+    line-height: 1.7;
+  }
+
+  /* ── Header ── */
+  .hero {
+    background: linear-gradient(135deg, #2c3e50 0%, #4a6741 50%, #c0956c 100%);
+    color: white;
+    padding: 50px 20px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.06) 0%, transparent 60%);
+  }
+  .hero h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .hero p {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    position: relative;
+  }
+  .hero .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.8rem;
+    margin-top: 12px;
+    position: relative;
+  }
+
+  /* ── Navigation Tabs ── */
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px 20px;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 8px 18px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background: white;
+    font-size: 0.85rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #555;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { border-color: #4a6741; color: #4a6741; }
+  .tab-btn.active {
+    background: #4a6741;
+    color: white;
+    border-color: #4a6741;
+  }
+
+  /* ── Sections ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 20px; }
+
+  .section {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .card h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 20px 0 10px;
+    color: #4a6741;
+  }
+
+  /* ── Tier System ── */
+  .tier-group {
+    margin-bottom: 24px;
+  }
+  .tier-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid;
+  }
+  .tier-header.tier-s { border-color: #e74c3c; }
+  .tier-header.tier-a { border-color: #e67e22; }
+  .tier-header.tier-b { border-color: #3498db; }
+  .tier-header.tier-c { border-color: #27ae60; }
+  .tier-header.tier-d { border-color: #95a5a6; }
+
+  .tier-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: white;
+    flex-shrink: 0;
+  }
+  .tier-s .tier-badge { background: #e74c3c; }
+  .tier-a .tier-badge { background: #e67e22; }
+  .tier-b .tier-badge { background: #3498db; }
+  .tier-c .tier-badge { background: #27ae60; }
+  .tier-d .tier-badge { background: #95a5a6; }
+
+  .tier-title {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .tier-sub {
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  .uni-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+
+  .uni-card {
+    background: #fafbfc;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .uni-card:hover {
+    border-color: #4a6741;
+    box-shadow: 0 4px 12px rgba(74,103,65,0.1);
+    transform: translateY(-2px);
+  }
+  .uni-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+  .uni-dept {
+    font-size: 0.82rem;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  .uni-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .tag {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: #e8f5e9;
+    color: #4a6741;
+  }
+  .tag.orange { background: #fff3e0; color: #e67e22; }
+  .tag.blue { background: #e3f2fd; color: #1976d2; }
+  .tag.purple { background: #f3e5f5; color: #7b1fa2; }
+  .tag.red { background: #fce4ec; color: #c62828; }
+  .tag.gray { background: #f5f5f5; color: #666; }
+
+  /* ── Score Guide ── */
+  .score-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.88rem;
+  }
+  .score-table th {
+    background: #f8f9fa;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #e0e0e0;
+    white-space: nowrap;
+  }
+  .score-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .score-table tr:hover td {
+    background: #f8fdf8;
+  }
+  .score-table .highlight-row td {
+    background: #fff8e1;
+  }
+
+  .grade-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .grade-fill {
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #4a6741, #81c784);
+  }
+  .grade-text {
+    font-size: 0.82rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* ── Exam Info ── */
+  .exam-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: #fafbfc;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border-left: 4px solid #4a6741;
+  }
+  .exam-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+  .exam-info h4 {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+  .exam-info p {
+    font-size: 0.85rem;
+    color: #666;
+  }
+  .exam-meta {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+    font-size: 0.78rem;
+  }
+  .exam-meta span {
+    background: #eee;
+    padding: 2px 8px;
+    border-radius: 8px;
+    color: #555;
+  }
+
+  /* ── Trend ── */
+  .trend-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .trend-item:last-child { border-bottom: none; }
+  .trend-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #4a6741;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .trend-text strong { display: block; margin-bottom: 2px; }
+  .trend-text p { font-size: 0.85rem; color: #666; }
+
+  /* ── Checklist ── */
+  .checklist-group {
+    margin-bottom: 20px;
+  }
+  .checklist-group h4 {
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #4a6741;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 0.88rem;
+    color: #444;
+  }
+  .check-icon {
+    color: #4a6741;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── Talk Script ── */
+  .script-card {
+    background: linear-gradient(135deg, #f8fdf8, #fff);
+    border: 1px solid #c8e6c9;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 14px;
+  }
+  .script-card .label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #4a6741;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .script-card .text {
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.8;
+  }
+  .script-card .text em {
+    color: #888;
+    font-style: normal;
+    font-size: 0.82rem;
+  }
+
+  /* ── Callout ── */
+  .callout {
+    background: #fff8e1;
+    border-left: 4px solid #ffb300;
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 0.88rem;
+  }
+  .callout strong {
+    color: #f57f17;
+  }
+
+  .callout.info {
+    background: #e3f2fd;
+    border-color: #42a5f5;
+  }
+  .callout.info strong {
+    color: #1565c0;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.8rem;
+    color: #999;
+  }
+
+  /* ── Filter ── */
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .filter-btn {
+    padding: 6px 14px;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    background: white;
+    font-size: 0.8rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #666;
+  }
+  .filter-btn:hover { border-color: #4a6741; }
+  .filter-btn.active {
+    background: #e8f5e9;
+    border-color: #4a6741;
+    color: #4a6741;
+    font-weight: 500;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.5rem; }
+    .uni-grid { grid-template-columns: 1fr; }
+    .card { padding: 20px; }
+    .tab-nav { gap: 4px; padding: 12px 10px; }
+    .tab-btn { padding: 6px 12px; font-size: 0.8rem; }
+    .score-table { font-size: 0.8rem; }
+    .score-table th, .score-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>서양화/회화 전공 입시 가이드</h1>
+  <p>내신 & 수능 성적별 대학 매칭 + 전형 정보 한눈에 보기</p>
+  <div class="badge">2025년 기준 정리 | 세부사항은 각 대학 모집요강 확인 필수</div>
+</div>
+
+<!-- Tab Nav -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('match')">성적별 대학 매칭</button>
+  <button class="tab-btn" onclick="showTab('univ')">대학별 상세 정보</button>
+  <button class="tab-btn" onclick="showTab('exam')">실기 시험 안내</button>
+  <button class="tab-btn" onclick="showTab('trend')">입시 트렌드</button>
+  <button class="tab-btn" onclick="showTab('hakjong')">학종 준비</button>
+  <button class="tab-btn" onclick="showTab('talk')">상담 멘트</button>
+</div>
+
+<div class="container">
+
+  <!-- ===================== TAB 1: 성적별 대학 매칭 ===================== -->
+  <div id="match" class="section active">
+
+    <div class="card">
+      <h2>내신(학생부교과) 기준 대학 매칭</h2>
+      <p style="font-size:0.85rem; color:#888; margin-bottom:16px;">수시 실기전형 기준, 학생부 반영 비율은 대학마다 다르지만 내신이 좋을수록 유리해요</p>
+
+      <table class="score-table">
+        <thead>
+          <tr>
+            <th>내신 등급</th>
+            <th>지원 가능 대학군</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1~2등급</strong></td>
+            <td>서울대(학종), 홍익대, 이화여대, 중앙대</td>
+            <td>학종 지원 시 강력한 경쟁력</td>
+          </tr>
+          <tr>
+            <td><strong>2~3등급</strong></td>
+            <td>홍익대, 이화여대, 국민대, 경희대, 중앙대</td>
+            <td>실기 성적이 뒷받침되면 상위권 가능</td>
+          </tr>
+          <tr>
+            <td><strong>3~4등급</strong></td>
+            <td>국민대, 경희대, 상명대, 덕성여대, 동덕여대, 수도권 사립</td>
+            <td>실기 비중 높은 전형 노리기</td>
+          </tr>
+          <tr>
+            <td><strong>4~5등급</strong></td>
+            <td>추계예술대, 수도권 중위권, 지방 거점 국립대(부산대, 경북대 등)</td>
+            <td>지방 국립대는 내신 반영 비율 낮은 곳 많음</td>
+          </tr>
+          <tr>
+            <td><strong>5~6등급</strong></td>
+            <td>지방 국립대, 지방 사립대(계명대, 영남대, 조선대 등)</td>
+            <td>실기 실력이 핵심 변수</td>
+          </tr>
+          <tr>
+            <td><strong>6등급 이하</strong></td>
+            <td>실기 비중 매우 높은 대학, 지방 사립대</td>
+            <td>정시(수능+실기)로 전환 고려</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <strong>참고!</strong> 미대 실기전형은 실기 비중이 60~80%로 높아서, 내신이 다소 낮아도 실기가 뛰어나면 역전 가능해요. 위 표는 대략적인 가이드라인입니다.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>수능 성적 기준 대학 매칭 (정시)</h2>
+      <p style="font-size:0.85rem; color:#888; margin-bottom:16px;">정시 = 수능 + 실기 합산. 수능 반영 비율은 보통 40~60%</p>
+
+      <table class="score-table">
+        <thead>
+          <tr>
+            <th>수능 등급 (평균)</th>
+            <th>지원 가능 대학군</th>
+            <th>수능 반영 비율</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1~2등급</strong></td>
+            <td>서울대, 홍익대, 이화여대</td>
+            <td>40~60%</td>
+          </tr>
+          <tr>
+            <td><strong>2~3등급</strong></td>
+            <td>홍익대, 이화여대, 국민대, 중앙대</td>
+            <td>40~60%</td>
+          </tr>
+          <tr>
+            <td><strong>3~4등급</strong></td>
+            <td>국민대, 경희대, 수도권 중상위</td>
+            <td>40~50%</td>
+          </tr>
+          <tr>
+            <td><strong>4~5등급</strong></td>
+            <td>수도권 중위권, 지방 거점 국립대</td>
+            <td>30~50%</td>
+          </tr>
+          <tr>
+            <td><strong>5~7등급</strong></td>
+            <td>지방 국립대, 지방 사립대</td>
+            <td>30~40%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout info">
+        <strong>수능 최저학력기준 (수시 실기전형)</strong><br>
+        서울대: 2개 합 5~6 이내 | 홍익대: 2개 합 7~8 이내 | 이화여대: 2개 합 6 이내<br>
+        국민대: 없거나 매우 낮음 | 지방대: 대부분 없음
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>한눈에 보는 성적 조합 가이드</h2>
+
+      <table class="score-table">
+        <thead>
+          <tr>
+            <th>학생 유형</th>
+            <th>추천 전형</th>
+            <th>추천 대학군</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight-row">
+            <td><strong>내신 좋음 + 실기 보통</strong></td>
+            <td>학종 / 학생부교과</td>
+            <td>서울대(학종), 이화여대, 중앙대</td>
+          </tr>
+          <tr>
+            <td><strong>내신 보통 + 실기 우수</strong></td>
+            <td>수시 실기전형</td>
+            <td>홍익대, 국민대, 경희대</td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>수능 우수 + 실기 우수</strong></td>
+            <td>정시</td>
+            <td>서울대, 홍익대, 이화여대 정시</td>
+          </tr>
+          <tr>
+            <td><strong>수능 보통 + 실기 매우 우수</strong></td>
+            <td>실기 비중 높은 정시/수시</td>
+            <td>국민대, 경희대, 수도권 사립</td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>내신/수능 부족 + 실기 우수</strong></td>
+            <td>실기 위주 수시</td>
+            <td>추계예술대, 지방 거점 국립대</td>
+          </tr>
+          <tr>
+            <td><strong>포트폴리오 강점</strong></td>
+            <td>포트폴리오 전형</td>
+            <td>한예종</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== TAB 2: 대학별 상세 ===================== -->
+  <div id="univ" class="section">
+
+    <div class="card">
+      <h2>대학별 상세 정보</h2>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterTier('all', this)">전체</button>
+        <button class="filter-btn" onclick="filterTier('s', this)">최상위</button>
+        <button class="filter-btn" onclick="filterTier('a', this)">상위</button>
+        <button class="filter-btn" onclick="filterTier('b', this)">중상위</button>
+        <button class="filter-btn" onclick="filterTier('c', this)">중위</button>
+        <button class="filter-btn" onclick="filterTier('d', this)">지방 거점</button>
+      </div>
+
+      <!-- S Tier -->
+      <div class="tier-group" data-tier="s">
+        <div class="tier-header tier-s">
+          <div class="tier-badge">S</div>
+          <div>
+            <div class="tier-title">최상위권</div>
+            <div class="tier-sub">내신 1~2 / 수능 1~2 / 실기 최상</div>
+          </div>
+        </div>
+        <div class="uni-grid">
+          <div class="uni-card">
+            <div class="uni-name">서울대학교</div>
+            <div class="uni-dept">미술대학 서양화과</div>
+            <div class="uni-tags">
+              <span class="tag red">수시: 학종</span>
+              <span class="tag orange">정시: 수능+실기(2과목)</span>
+              <span class="tag blue">수채화정물 + 소묘</span>
+              <span class="tag purple">최저 있음</span>
+            </div>
+          </div>
+          <div class="uni-card">
+            <div class="uni-name">한국예술종합학교</div>
+            <div class="uni-dept">미술원 조형예술과</div>
+            <div class="uni-tags">
+              <span class="tag red">포트폴리오 전형</span>
+              <span class="tag blue">실기(인체소묘 등)</span>
+              <span class="tag gray">특수대학</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- A Tier -->
+      <div class="tier-group" data-tier="a">
+        <div class="tier-header tier-a">
+          <div class="tier-badge">A</div>
+          <div>
+            <div class="tier-title">상위권</div>
+            <div class="tier-sub">내신 2~3 / 수능 2~3 / 실기 우수</div>
+          </div>
+        </div>
+        <div class="uni-grid">
+          <div class="uni-card">
+            <div class="uni-name">홍익대학교</div>
+            <div class="uni-dept">미술대학 회화과</div>
+            <div class="uni-tags">
+              <span class="tag">수시: 실기전형</span>
+              <span class="tag orange">정시: 수능40+실기60</span>
+              <span class="tag blue">수채화정물화</span>
+              <span class="tag purple">최저: 2개합 7~8</span>
+            </div>
+          </div>
+          <div class="uni-card">
+            <div class="uni-name">이화여자대학교</div>
+            <div class="uni-dept">조형예술대학 서양화전공</div>
+            <div class="uni-tags">
+              <span class="tag">수시: 실기/학종</span>
+              <span class="tag blue">수채화정물/발상과표현</span>
+              <span class="tag purple">최저: 2개합 6</span>
+              <span class="tag gray">여대</span>
+            </div>
+          </div>
+          <div class="uni-card">
+            <div class="uni-name">중앙대학교</div>
+            <div class="uni-dept">예술대학 서양화전공</div>
+            <div class="uni-tags">
+              <span class="tag">수시: 실기/학종</span>
+              <span class="tag blue">수채화정물/발상과표현</span>
+              <span class="tag purple">최저 있음</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- B Tier -->
+      <div class="tier-group" data-tier="b">
+        <div class="tier-header tier-b">
+          <div class="tier-badge">B</div>
+          <div>
+            <div class="tier-title">중상위권</div>
+            <div class="tier-sub">내신 3~4 / 수능 3~4 / 실기 우수</div>
+          </div>
+        </div>
+        <div class="uni-grid">
+          <div class="uni-card">
+            <div class="uni-name">국민대학교</div>
+            <div class="uni-dept">조형대학 회화전공</div>
+            <div class="uni-tags">
+              <span class="tag">실기 비중 높음</span>
+              <span class="tag blue">수채화정물화</span>
+              <span class="tag">최저 없거나 낮음</span>
+            </div>
+          </div>
+          <div class="uni-card">
+            <div class="uni-name">경희대학교</div>
+            <div class="uni-dept">미술대학 서양화전공</div>
+            <div class="uni-tags">
+              <span class="tag">수시 실기전형</span>
+              <span class="tag blue">수채화정물</span>
+              <span class="tag purple">최저: 2개합 7~8</span>
+            </div>
+          </div>
+          <div class="uni-card">
+            <div class="uni-name">성균관대학교</div>
+            <div class="uni-dept">미술학과 (회화 트랙)</div>
+            <div class="uni-tags">
+              <span class="tag">학종/실기</span>
+              <span class="tag gray">회화 트랙 포함</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C Tier -->
+      <div class="tier-group" data-tier="c">
+        <div class="tier-header tier-c">
+          <div class="tier-badge">C</div>
+          <div>
+            <div class="tier-title">중위권</div>
+            <div class="tier-sub">내신 4~5 / 수능 4~5 / 실기 준수</div>
+          </div>
+        </div>
+        <div class="uni-grid">
+          <div class="uni-card">
+            <div class="uni-name">추계예술대학교</div>
+            <div class="uni-dept">서양화전공</div>
+            <div class="uni-tags">
+              <span class="tag">예술 특성화</span>
+              <span class="tag">실기 중심</span>
+            </div>
+          </div>
+          <div class="uni-card">
+            <div class="uni-name">상명대학교</div>
+            <div class="uni-dept">조형예술학과</div>
+            <div class="uni-tags">
+              <span class="tag">수시 실기</span>
+            </div>
+          </div>
+          <div class="uni-card">
+            <div class="uni-name">덕성여대 / 동덕여대</div>
+            <div class="uni-dept">서양화/회화전공</div>
+            <div class="uni-tags">
+              <span class="tag">수시 실기</span>
+              <span class="tag gray">여대</span>
+            </div>
+          </div>
+          <div class="uni-card">
+            <div class="uni-name">가천대 / 수원대</div>
+            <div class="uni-dept">회화/서양화전공</div>
+            <div class="uni-tags">
+              <span class="tag">수도권</span>
+              <span class="tag">실기 위주</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D Tier -->
+      <div class="tier-group" data-tier="d">
+        <div class="tier-header tier-d">
+          <div class="tier-badge">D</div>
+          <div>
+            <div class="tier-title">지방 거점 국립대 + 사립대</div>
+            <div class="tier-sub">내신 유연 / 실기 중심 / 등록금 저렴(국립)</div>
+          </div>
+        </div>
+        <div class="uni-grid">
+          <div class="uni-card">
+            <div class="uni-name">부산대학교</div>
+            <div class="uni-dept">미술학과 서양화전공</div>
+            <div class="uni-tags">
+              <span class="tag">국립대</span>
+              <span class="tag">부산</span>
+            </div>
+          </div>
+          <div class="uni-card">
+            <div class="uni-name">경북대학교</div>
+            <div class="uni-dept">미술학과 서양화전공</div>
+            <div class="uni-tags">
+              <span class="tag">국립대</span>
+              <span class="tag">대구</span>
+            </div>
+          </div>
+          <div class="uni-card">
+            <div class="uni-name">전남대 / 전북대</div>
+            <div class="uni-dept">미술학과 서양화전공</div>
+            <div class="uni-tags">
+              <span class="tag">국립대</span>
+              <span class="tag">광주/전주</span>
+            </div>
+          </div>
+          <div class="uni-card">
+            <div class="uni-name">충남대 / 충북대</div>
+            <div class="uni-dept">미술학과</div>
+            <div class="uni-tags">
+              <span class="tag">국립대</span>
+              <span class="tag">대전/청주</span>
+            </div>
+          </div>
+          <div class="uni-card">
+            <div class="uni-name">강원대 / 제주대</div>
+            <div class="uni-dept">미술학과</div>
+            <div class="uni-tags">
+              <span class="tag">국립대</span>
+              <span class="tag">춘천/제주</span>
+            </div>
+          </div>
+          <div class="uni-card">
+            <div class="uni-name">계명대 / 영남대 / 조선대</div>
+            <div class="uni-dept">미술학부/미술학과</div>
+            <div class="uni-tags">
+              <span class="tag gray">지방 사립</span>
+              <span class="tag">실기 중심</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== TAB 3: 실기 시험 ===================== -->
+  <div id="exam" class="section">
+
+    <div class="card">
+      <h2>실기 시험 과목 안내</h2>
+
+      <div class="exam-item">
+        <div class="exam-icon">🎨</div>
+        <div class="exam-info">
+          <h4>수채화 정물화</h4>
+          <p>가장 보편적인 실기 과목. 주어진 정물(과일, 병, 천, 석고 등)을 수채화로 표현합니다.</p>
+          <div class="exam-meta">
+            <span>5~6시간</span>
+            <span>출제: 거의 모든 대학</span>
+            <span>필수 준비</span>
+          </div>
+          <p style="margin-top:8px; font-size:0.82rem; color:#888;">평가: 구도, 묘사력, 색채감각, 질감 표현, 완성도</p>
+        </div>
+      </div>
+
+      <div class="exam-item">
+        <div class="exam-icon">✏️</div>
+        <div class="exam-info">
+          <h4>인체소묘 (인체 드로잉)</h4>
+          <p>실제 모델(누드 또는 착의)을 보고 연필/목탄으로 묘사합니다.</p>
+          <div class="exam-meta">
+            <span>4~6시간</span>
+            <span>출제: 서울대, 한예종</span>
+            <span>상위권 필수</span>
+          </div>
+          <p style="margin-top:8px; font-size:0.82rem; color:#888;">평가: 인체 비례, 해부학적 이해, 선의 표현력</p>
+        </div>
+      </div>
+
+      <div class="exam-item">
+        <div class="exam-icon">🗿</div>
+        <div class="exam-info">
+          <h4>석고소묘 (석고 데생)</h4>
+          <p>석고상(아그리파, 줄리앙, 비너스 등)을 연필/목탄으로 묘사합니다.</p>
+          <div class="exam-meta">
+            <span>5~6시간</span>
+            <span>축소 추세</span>
+          </div>
+          <p style="margin-top:8px; font-size:0.82rem; color:#888;">전통적 과목이나 최근 출제하는 대학이 줄어들고 있음</p>
+        </div>
+      </div>
+
+      <div class="exam-item">
+        <div class="exam-icon">💡</div>
+        <div class="exam-info">
+          <h4>발상과 표현</h4>
+          <p>주어진 주제/키워드를 보고 자유롭게 표현합니다. 재료 자유.</p>
+          <div class="exam-meta">
+            <span>4~5시간</span>
+            <span>출제: 서울대, 이화여대, 중앙대 등</span>
+            <span>창의성 중시</span>
+          </div>
+          <p style="margin-top:8px; font-size:0.82rem; color:#888;">평가: 창의성, 발상력, 표현의 독창성, 조형 완성도</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>대학별 실기 과목 매칭</h2>
+
+      <table class="score-table">
+        <thead>
+          <tr>
+            <th>대학</th>
+            <th>수시 실기</th>
+            <th>정시 실기</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>서울대</strong></td>
+            <td>학종 (실기 없음)</td>
+            <td>수채화정물 + 소묘 (2과목)</td>
+          </tr>
+          <tr>
+            <td><strong>홍익대</strong></td>
+            <td>수채화정물화</td>
+            <td>수채화정물화</td>
+          </tr>
+          <tr>
+            <td><strong>이화여대</strong></td>
+            <td>수채화정물 / 발상과표현</td>
+            <td>수채화정물</td>
+          </tr>
+          <tr>
+            <td><strong>국민대</strong></td>
+            <td>수채화정물화</td>
+            <td>수채화정물화</td>
+          </tr>
+          <tr>
+            <td><strong>중앙대</strong></td>
+            <td>수채화정물 / 발상과표현</td>
+            <td>수채화정물</td>
+          </tr>
+          <tr>
+            <td><strong>경희대</strong></td>
+            <td>수채화정물</td>
+            <td>수채화정물</td>
+          </tr>
+          <tr>
+            <td><strong>한예종</strong></td>
+            <td>포트폴리오 + 실기(인체소묘 등)</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <strong>핵심!</strong> 수채화정물화가 사실상 표준 실기. 이것만 잘 해도 대부분의 대학에 지원 가능합니다. 서울대·한예종 목표라면 인체소묘/발상과표현도 함께 준비!
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== TAB 4: 트렌드 ===================== -->
+  <div id="trend" class="section">
+
+    <div class="card">
+      <h2>최근 입시 트렌드</h2>
+
+      <div class="trend-item">
+        <div class="trend-num">1</div>
+        <div class="trend-text">
+          <strong>비실기 전형(학종) 확대</strong>
+          <p>교육부 방침에 따라 학생부종합전형 비중이 꾸준히 증가하고 있어요. 서울대 수시는 이미 학종으로만 선발합니다. 실기 없이도 미대 진학 가능한 길이 넓어지고 있어요.</p>
+        </div>
+      </div>
+
+      <div class="trend-item">
+        <div class="trend-num">2</div>
+        <div class="trend-text">
+          <strong>실기 과목 단순화</strong>
+          <p>2과목 실기에서 1과목으로 축소하는 대학이 늘고 있어요. 석고소묘는 거의 사라지는 추세이고, 수채화정물화가 가장 보편적인 실기 과목으로 자리잡았습니다.</p>
+        </div>
+      </div>
+
+      <div class="trend-item">
+        <div class="trend-num">3</div>
+        <div class="trend-text">
+          <strong>수능 비중 증가</strong>
+          <p>정시 확대 정책에 따라 미대도 정시 비중이 늘어났어요. 수능 + 실기 병행 준비가 필수화되는 추세입니다.</p>
+        </div>
+      </div>
+
+      <div class="trend-item">
+        <div class="trend-num">4</div>
+        <div class="trend-text">
+          <strong>창의성 중시</strong>
+          <p>단순 묘사력(잘 그리는 것)보다 개인의 시각과 해석, 창의적 표현을 중시하는 방향으로 변화하고 있어요. 발상과 표현 과목의 중요성이 커지고 있습니다.</p>
+        </div>
+      </div>
+
+      <div class="trend-item">
+        <div class="trend-num">5</div>
+        <div class="trend-text">
+          <strong>통합학과 증가</strong>
+          <p>서양화/동양화/판화 등을 분리하지 않고 '회화과' 또는 '조형예술학과'로 통합 운영하는 대학이 늘고 있어요. 입학 후 전공 세부 선택하는 구조입니다.</p>
+        </div>
+      </div>
+
+      <div class="trend-item">
+        <div class="trend-num">6</div>
+        <div class="trend-text">
+          <strong>포트폴리오 전형</strong>
+          <p>한예종 등 일부 대학에서 포트폴리오 제출 전형을 운영해요. 작업 과정과 예술적 사고력을 보여주는 것이 핵심입니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== TAB 5: 학종 ===================== -->
+  <div id="hakjong" class="section">
+
+    <div class="card">
+      <h2>학생부종합전형 준비 가이드</h2>
+      <p style="font-size:0.85rem; color:#888; margin-bottom:16px;">실기 없이 미대 가는 전형. 고1부터 체계적으로 준비해야 해요.</p>
+
+      <div class="checklist-group">
+        <h4>📋 학교생활기록부 관리</h4>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span><strong>미술 교과 성적</strong> — 당연히 높아야 함. A등급 필수</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span><strong>국어, 영어, 사회</strong> — 미술사/문화 관련 교과도 중요</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span><strong>전체 내신</strong> — 서울 상위권 목표 시 3~4등급 이내</span>
+        </div>
+      </div>
+
+      <div class="checklist-group">
+        <h4>⭐ 세부능력 및 특기사항 (세특) — 가장 중요!</h4>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span>미술 수업에서의 깊이 있는 탐구 기록</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span><strong>타 교과 + 미술 융합</strong>: 물리 시간에 빛과 색의 원리 탐구 → 회화 적용</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span><strong>타 교과 + 미술 융합</strong>: 역사 시간에 미술사적 맥락 분석</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span><strong>타 교과 + 미술 융합</strong>: 국어 시간에 미술 비평문 작성</span>
+        </div>
+      </div>
+
+      <div class="checklist-group">
+        <h4>🎯 비교과 활동</h4>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span>미술 동아리 활동 (적극적 참여, 가능하면 회장)</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span>교내 미술대회, 전시회 참가</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span>미술관/갤러리 관람 후 감상문, 비평문 작성</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span>미술 관련 독서 (미술사, 미학, 예술론, 작가론)</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span>학교 벽화, 포스터 등 미술 관련 봉사</span>
+        </div>
+      </div>
+
+      <div class="checklist-group">
+        <h4>🗣️ 면접 준비 포인트</h4>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span><strong>지원 동기</strong> — 왜 서양화/회화를 전공하고 싶은지</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span><strong>예술관</strong> — 본인의 예술적 관점, 추구하는 방향</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span><strong>작품 설명</strong> — 자신이 만든 작품에 대한 설명 능력</span>
+        </div>
+        <div class="check-item">
+          <span class="check-icon">&#10003;</span>
+          <span><strong>미술 지식</strong> — 기본 미술사, 현대미술 트렌드</span>
+        </div>
+      </div>
+
+      <div class="callout info">
+        <strong>학종 핵심 전략 4단계</strong><br>
+        1단계: 기본기 = 내신 관리 + 미술 교과 세특 충실히<br>
+        2단계: 차별화 = 다른 교과와 미술의 융합 탐구<br>
+        3단계: 깊이 = 특정 주제/작가/사조에 대한 심화 탐구<br>
+        4단계: 일관성 = 3년간의 활동이 하나의 스토리로 연결
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== TAB 6: 상담 멘트 ===================== -->
+  <div id="talk" class="section">
+
+    <div class="card">
+      <h2>학부모 상담 시 활용 멘트</h2>
+      <p style="font-size:0.85rem; color:#888; margin-bottom:20px;">전화 상담할 때 참고할 수 있는 멘트들이에요</p>
+
+      <div class="script-card">
+        <div class="label">도입부</div>
+        <div class="text">
+          "안녕하세요, 저는 서양화를 전공했고 현재 미술 수업을 담당하고 있어요. 입시 세부 일정이나 전형별 세세한 수치는 진학 담당 선생님께서 더 정확하게 안내해 주실 수 있는데, 서양화 전공자로서 실기나 전공 관련 이야기는 제가 도움 드릴 수 있을 것 같아요."
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="label">성적 관련 질문이 나올 때</div>
+        <div class="text">
+          "서울 상위권 미대를 목표로 하신다면, 실기뿐만 아니라 수능 준비도 병행하셔야 해요. 홍익대만 해도 수능 최저학력기준이 있거든요."<br><br>
+          "내신이 3~4등급이면 실기 실력에 따라 국민대, 경희대 쪽도 충분히 가능하고요, 실기가 정말 우수하면 홍익대도 노려볼 수 있어요."<br><br>
+          <em>(학생 성적에 맞게 조절해서 말씀하세요)</em>
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="label">실기 준비 관련</div>
+        <div class="text">
+          "요즘 미대 실기는 수채화정물화가 사실상 표준이에요. 대부분의 대학에서 이 과목으로 시험을 보거든요. 서울대나 한예종을 목표로 하시면 인체소묘나 발상과표현도 함께 준비하셔야 하고요."<br><br>
+          "입시 화실(미술학원)은 가능하면 일찍 시작하시는 게 좋아요. 보통 고1~고2부터 다니시는 분들이 많아요."
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="label">학종 관련 질문이 나올 때</div>
+        <div class="text">
+          "요즘은 학생부종합전형으로 미대 가는 길도 넓어지고 있어요. 서울대 미대 수시가 학종으로만 뽑거든요. 내신이 좋고 학교 활동이 충실하다면 학종도 좋은 선택지예요."<br><br>
+          "학종에서 가장 중요한 건 세특이에요. 미술 수업뿐만 아니라 다른 교과에서도 미술과 연계한 탐구 활동이 기록되면 좋습니다."
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="label">전공자로서 해줄 수 있는 이야기</div>
+        <div class="text">
+          "수업에서 보는 학생의 강점은 ___이에요."<br>
+          <em>(색채 감각, 관찰력, 구도 감각, 표현의 대담함, 꾸준함 등 구체적으로)</em><br><br>
+          "서양화를 전공하면 졸업 후 작가 활동, 교직, 대학원 진학, 큐레이터, 미술 교육 등 다양한 진로가 있어요."<br><br>
+          "제가 서양화 전공하면서 느낀 건, 결국 본인이 좋아하는 걸 꾸준히 하는 게 가장 중요하더라고요."
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="label">모를 때 대응</div>
+        <div class="text">
+          "그 부분은 제가 정확히 확인해서 다시 안내드릴게요."<br><br>
+          "입시 전형별 세부 일정은 진로진학부 ○○○ 선생님께 문의하시면 더 정확한 안내를 받으실 수 있어요. 제가 연결해 드릴까요?"
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>상담 팁!</strong> 학부모님이 서양화 전공 선생님께 상담을 원하신 건, 입시 숫자보다 <strong>전공자의 눈으로 본 아이 이야기</strong>가 듣고 싶어서일 수 있어요. 수업에서 관찰한 학생의 강점과 가능성을 구체적으로 말씀해 주시면 큰 도움이 됩니다.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  2025년 기준 정리 | 세부사항은 반드시 각 대학 입학처 모집요강에서 확인하세요<br>
+  이 페이지는 참고용이며, 정확한 입시 정보는 대학별 공식 발표를 따릅니다
+</div>
+
+<script>
+  // Tab switching
+  function showTab(tabId) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Tier filter
+  function filterTier(tier, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.tier-group').forEach(g => {
+      if (tier === 'all' || g.dataset.tier === tier) {
+        g.style.display = 'block';
+      } else {
+        g.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
